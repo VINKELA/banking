@@ -1,4 +1,15 @@
-#Array of dicts for users i.e the data structure
+'''
+App for creating customer account,
+Checking the balance for an existing account, 
+Depositing money into an existing account,
+Withdrawing momey from an existing account,
+Transfering money from an existing account to another existing account
+Note: The user password created during creation must be unique for proper functioning of the App
+To run the App via command line or Terminal run (py bank.py)
+
+'''
+
+# dict of users, sample users are already registered for testing 
 users = [\
     {'email':'first@gmail.com', 'password':'first_password', 'balance':250},\
     {'email':'second@gmail.com', 'password':'second_password', 'balance':20}, \
@@ -11,6 +22,8 @@ def check_user(attr, value):
         if item[attr] == value:
             return item
     return False
+
+# function to deposit money
 def deposit_money(user):
     # amount to be deposited
     amount = input('please enter the deposit amount\n')
@@ -28,10 +41,11 @@ def deposit_money(user):
     new_balance = float(user['balance']) + user_amount
     print('you just deposited {deposit}, your balance is now {balance}'.format(deposit = user_amount, balance = new_balance))
 
+# function to check a given users account balance
 def check_balance(user):
     print('Your account balance is {}'.format(user['balance']))
 
-
+# function to withdraw money given the user
 def withdraw(user):
     amount = input('please enter the amount you want to withdraw\n')
     while(True) :
@@ -53,7 +67,8 @@ def withdraw(user):
     else:
         new_balance = float(user['balance']) - user_amount
         print('your have successfully withdrawn {withdrawn_amount}, your balance is {balance}'.format(withdrawn_amount = user_amount, balance = new_balance))
-        
+
+# function to transfer money given user        
 def tranfer(user):
     amount = input('please enter the amount you want to transfer\n')
     while(True) :
@@ -86,7 +101,7 @@ def tranfer(user):
         print('you have successfully transfered {sent_amount} to {reciever}, your balance is now {new_balance}'.format(sent_amount = user_amount, reciever = beneficiary['email'], new_balance = user['balance']))
         
 
-
+# function creates a new user
 def create_user():
     user_email = input('please enter an email\n')
     # loop checks if user with the given email or identity already exist
@@ -103,16 +118,12 @@ def create_user():
         if len(user_password) > 4 and not check_user('password', user_password):
             break
         else:
-            print('password must be four characters or more\n')
+            print('password must be four characters or more and unique\n')
             user_password = input('please choose a password:\n')
     # add new user to users
     new_user = {'email':user_email, 'password':user_password, 'balance': 0.0}
     users.append(new_user)
     print('{customer} created successfully!'.format(customer = user_email))
-
-
-    
-
 
 
 def main():
@@ -164,20 +175,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-        
-
-
-
-        
-
-        
-        
-            
-
-
-        
-
-
-
-
-
