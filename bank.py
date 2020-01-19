@@ -2,7 +2,7 @@
 App for creating customer account,
 Checking the balance for an existing account, 
 Depositing money into an existing account,
-Withdrawing momey from an existing account,
+Withdrawing money from an existing account,
 Transfering money from an existing account to another existing account
 Note: The user password created during creation must be unique for proper functioning of the App
 To run the App via command line or Terminal run (py bank.py)
@@ -87,7 +87,7 @@ def tranfer(user):
     else:
         receiver = input('please enter beneficiary\'s email address \n')
         while(True):
-            beneficiary = check_user('email',receiver)
+            beneficiary = check_user('email',receiver.lower())
 
             if beneficiary:
                 break
@@ -106,7 +106,7 @@ def create_user():
     user_email = input('please enter an email\n')
     # loop checks if user with the given email or identity already exist
     while(True):
-        if not check_user('email',user_email):
+        if not check_user('email',user_email.lower()):
             break
         else:
             print('An account with the email or username you provided already exist.\n')
@@ -121,9 +121,9 @@ def create_user():
             print('password must be four characters or more and unique\n')
             user_password = input('please choose a password:\n')
     # add new user to users
-    new_user = {'email':user_email, 'password':user_password, 'balance': 0.0}
+    new_user = {'email':user_email.lower(), 'password':user_password, 'balance': 0.0}
     users.append(new_user)
-    print('{customer} created successfully!'.format(customer = user_email))
+    print('{customer} created successfully!'.format(customer = user_email.lower()))
 
 
 def main():
