@@ -156,15 +156,18 @@ def main():
         else:
             # authicate user
             user_authicated = True
-            user_option = input('press 1: check balance\npress 2: deposit\npress 3: withdraw\npress 4: transfer\n')
+            user_option = input('press 1: check balance\npress 2: deposit\npress 3: withdraw\npress 4: transfer\npress 0: go back\n')
             # makes sure user chooses from available options
             while True:
-                if user_option == '1' or user_option == '2' or user_option == '3' or user_option == '4':
+                if user_option == '0' or user_option == '1' or user_option == '2' or user_option == '3' or user_option == '4':
                     break
                 else:
                     print('please choose one the following options\n')
-                    user_option = input('press 1: check balance\npress 2: deposit\npress 3: withdraw\npress 4: transfer\n')
-            if user_option == '1':
+                    user_option = input('press 1: check balance\npress 2: deposit\npress 3: withdraw\npress 4: transfer\npress 0: go back\n')
+            
+            if user_option == '0':
+                main()
+            elif user_option == '1':
                 check_balance(user)
             elif user_option == '2':
                 deposit_money(user)
